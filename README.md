@@ -8,4 +8,6 @@ The three microservices running on a Eureka server
 3. CoureCatalogService - contains a CatalogResourse that consumes the data of CourseRating and 
                         CourseInfo Services to give a combined catalog of courses to rating by users
                         
+4. DiscoveryServer - An instance of Eureka Server to which all the above microservices are registered as clients
+                        
                    
