@@ -1,0 +1,1 @@
+insert into Course values('c101','Mathematics','Numerical Study');
