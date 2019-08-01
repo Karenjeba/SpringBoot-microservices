@@ -1,6 +1,4 @@
 package com.niit.CourseInfoControllers;
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +18,34 @@ import com.niit.CourseService.CourseInfoService;
 public class CourseInfoController {
 	@Autowired
 	private CourseInfoService service;
-	@RequestMapping("/course")
+	@RequestMapping("/home")
 	public ModelAndView welcome() 
 	{ 
-	ModelAndView model = new ModelAndView();
-	 model.setViewName("course"); 
-	 return model; 
+		ModelAndView model = new ModelAndView();
+		model.setViewName("home"); 
+		return model; 
 	 }
+	@RequestMapping("/add")
+	public ModelAndView courseAdd()
+	{
+		ModelAndView model = new ModelAndView();
+		model.setViewName("course");
+		return model;
+	}
 	@RequestMapping("/addCourse")
-	public ModelAndView courseAdd(Course course)
+	public ModelAndView course(Course course)
 	{
 		service.addCourse(course);
 		ModelAndView model = new ModelAndView();
-		 model.setViewName("courseId");
+		 model.setViewName("showCourse");
 		return model;
-	}
-	@RequestMapping("/getCourse")
-	public ModelAndView getCourseById(@RequestParam String courseId)
+	}	
+	@RequestMapping("/getAllCourses")
+	public ModelAndView getAllCourse()
 	{
-		Course course =  service.getCourseById(courseId);
+		List<Course> courselist =  service.getAllCourses();
 		ModelAndView model = new ModelAndView();
-		model.addObject(course);
+		model.addObject("courselist",courselist);
 		model.setViewName("showCourse");
 		return model;
 		
