@@ -48,6 +48,12 @@ public void addUserRating(@RequestBody UserRating user)
 { 
 	courseRatingService.addUserRating(user); 
 }
-
-
+@RequestMapping("/courserating/{courseId}")
+@ResponseBody
+public Course getCourseFromRating(@PathVariable("courseId") String courseId)
+{
+	Rating rating = courseRatingService.getByCourseId(courseId);	
+	Course course = restTemplate.getForObject("http://course-info-service/course/courselist/"+rating.getCourseId(), Course.class);
+	return course;
+}
 }	
